@@ -8,6 +8,9 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.firebase.crashlytics'
     id "io.qameta.allure" version "2.11.2"
+    id "io.qameta.allure-report" version "2.11.2"
+    id "io.qameta.allure-adapter" version "2.11.2"
+    id "org.gradle.test-retry" version "1.5.3"
 }
 
 android {
@@ -105,5 +108,4 @@ dependencies {
     testImplementation platform("io.qameta.allure:allure-bom:$allureVersion")
     testImplementation "io.qameta.allure:allure-junit4"
     androidTestImplementation "io.qameta.allure:allure-kotlin-android:2.4.0"
-
 }

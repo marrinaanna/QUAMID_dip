@@ -9,8 +9,8 @@ public class someData {
     public String title2 = "Title2";
     public String description = "Description";
     public String description2 = "Description2";
-    public String date = "09.05.2024";
-    public String date2 = "25.03.2024";
+    public String date = "09.09.2024";
+    public String date2 = "25.09.2024";
     public String time = "16:00";
     public String time2 = "12:24";
     public String emptyField = "";

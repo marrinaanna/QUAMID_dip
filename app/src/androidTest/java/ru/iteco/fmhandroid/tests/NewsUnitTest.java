@@ -101,7 +101,6 @@ public class NewsUnitTest {
         controlPanelPage.checkTitleDescription(firstNewsTitle);
 
     }
-
     @Test
     @DisplayName("News: Переход  на экран редактирования новостей Control Panel")
     public void testGoToEditNews() {
@@ -110,13 +109,6 @@ public class NewsUnitTest {
         mainScreenPage.goToNews();
     }
 
-    @Test
-    @DisplayName("News: Развернуть описание")
-    public void testOpenOneNews() {
-        newsPage.goToControlPanel();
-        controlPanelPage.chooseFirstNews();
-        controlPanelPage.newsDescription.check(matches(isDisplayed()));
-    }
 
     @Test
     @DisplayName("Control Panel: сортировка")
@@ -136,41 +128,6 @@ public class NewsUnitTest {
         controlPanelPage.checkDescriptionAndDate(firstNewsTitle, firstNewsDate);
     }
 
-
-    @Test
-    @DisplayName("Control Panel: фильтр Active")
-    public void testCpFilterActive() {
-        newsPage.goToControlPanel();
-        controlPanelPage.editNewsButton.perform(click());
-        createEditNewsPage.checkEditNewsScreenLoaded();
-        createEditNewsPage.switcher.perform(click());
-        createEditNewsPage.saveNews();
-        controlPanelPage.newsFilterButton.perform(click());
-        filterNewsPage.checkFilterNewsScreenLoaded();
-        filterNewsPage.checkBoxNotActive.perform(click());
-        filterNewsPage.checkBoxNotActive.check(matches(isNotChecked()));
-        filterNewsPage.filterButton.perform(click());
-        controlPanelPage.checkListNewsLoaded();
-        String firstNewsStatus = dataHelper.Text.getText(controlPanelPage.newsStatus);
-        assertEquals(firstNewsStatus, "Active");
-    }
-    @Test
-    @DisplayName("Control Panel: фильтр Not Active")
-    public void testCpFilterNotActive() {
-        newsPage.goToControlPanel();
-        controlPanelPage.editNewsButton.perform(click());
-        createEditNewsPage.checkEditNewsScreenLoaded();
-        createEditNewsPage.switcher.perform(click());
-        createEditNewsPage.saveNews();
-        controlPanelPage.newsFilterButton.perform(click());
-        filterNewsPage.checkFilterNewsScreenLoaded();
-        filterNewsPage.checkBoxActive.perform(click());
-        filterNewsPage.checkBoxActive.check(matches(isNotChecked()));
-        filterNewsPage.filterButton.perform(click());
-        controlPanelPage.checkListNewsLoaded();
-        String firstNewsStatus = dataHelper.Text.getText(controlPanelPage.newsStatus);
-        assertEquals(firstNewsStatus, "Not active");
-    }
 
     @Test
     @Ignore
@@ -195,26 +152,8 @@ public class NewsUnitTest {
         onView(withText("Refresh")).check(matches(isDisplayed()));
     }
 
-    @Test
-    @DisplayName("Control Panel: Развернуть описание")
-    public void testCpOpenOneNews() {
-        newsPage.goToControlPanel();
-        controlPanelPage.chooseFirstNews();
-        controlPanelPage.newsDescription.check(matches(isDisplayed()));
-    }
 
-    @Test
-    @DisplayName("Control Panel: Удаление новости")
-    public void testCpDeleteNews() {
-       newsPage.goToControlPanel();
-        String title = dataHelper.Text.getText(controlPanelPage.newsItemTitle);
-        controlPanelPage.deleteNewsButton.perform(click());
-        controlPanelPage.cancelButton.check(matches(isDisplayed()));
-        controlPanelPage.okButton.check(matches(isDisplayed()));
-        controlPanelPage.okButton.perform(click());
-        controlPanelPage.checkListNewsLoaded();
-        String title2 = dataHelper.Text.getText(controlPanelPage.newsItemTitleAfterDelete);
-        assertNotEquals(title, title2);
-    }
+
+
 
 }

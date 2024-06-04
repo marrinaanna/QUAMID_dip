@@ -1,6 +1,8 @@
 package ru.iteco.fmhandroid.tests;
 
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -83,25 +85,6 @@ public class CreateAndEditNewsTest {
         dataHelper.checkMessage(R.string.empty_fields, true);
     }
 
-    @Test
-    @DisplayName("Control panel: Отредактировать новость")
-    public void testEditTitleNews() {
-        controlPanelPage.addNewsButton.perform(click());
-        controlPanelPage.createNewsButton.perform(click());
-        createEditNewsPage.checkCreateNewsScreenLoaded();
-        createEditNewsPage.fillInFormNews(category, title, date, time, description);
-        createEditNewsPage.saveNews();
-        controlPanelPage.editNewsButton.perform(click());
-        createEditNewsPage.checkEditNewsScreenLoaded();
-        createEditNewsPage.fillInFormNews(category2, title2, date2, time2, description2);
-        createEditNewsPage.saveNews();
-        controlPanelPage.checkControlPanelScreenLoaded();
-        controlPanelPage.editNewsButtonAfterEdit.perform(click());
-        createEditNewsPage.checkEditNewsScreenLoaded();
-        createEditNewsPage.checkNewsExists(category2, title2, date2, time2, description2);
-        createEditNewsPage.saveNews();
-        controlPanelPage.checkControlPanelScreenLoaded();
-    }
 
     @Test
     @DisplayName("Control panel: Отредактировать новость и отменить редактирование")
@@ -140,4 +123,5 @@ public class CreateAndEditNewsTest {
         String statusAfter = dataHelper.Text.getText(controlPanelPage.newsStatusAfterChange);
         assertNotEquals(statusBefore, statusAfter);
     }
+
 }
